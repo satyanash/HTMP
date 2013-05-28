@@ -1,0 +1,49 @@
+
+Advantages
+
+Some very obvious and not so obvious advantages:
+
+1
+Will completely eliminate spam.
+This is simply because this form is completely free from the problem of unsolicitied mail.
+Keeping the mail available until the target has actually read the mail is very inefficient for spammers.
+
+
+2
+This form of mail is completely dependent on the sender.
+The receiver has complete independence regarding whether to fetch mail from a given host or not.
+
+3
+If an existing subscribed email address starts sending unsoliccited mail to the user, all he has to do then is to unsubscribe from the sender's mail address.
+
+4
+It works on existing HTTP servers, so no new implementations really need to take place in order to implement this on the server side.
+
+
+Disadvantages
+
+1
+Ideally, encrytion should not be a part of the protocol specification itself.
+Transmission security should be achieved by wrapping the existing protocol with any other standardized or custom encryption methodologies.
+For example TLS or SSL.
+
+2
+Depends on Assymetric key encryption. Will not really work with symmetric key encryption without changes to the specification.
+Plus key management becomes difficult when there are a large number of hosts to be connected to.
+
+3
+This method will not scale properly as the amount of mail to be received increases.
+
+4
+The encrypted email message is publicly visible, which may be decrypted easily in case the encryption technique is compromised in the future.
+
+5
+This form of email will require the client program to poll all of the subscribed senders at short intervals in order to get regular email updates.
+When the amount of subscribed senders runs into the thousands, it can be a problem.
+
+
+
+Security Considerations
+
+Form of encrpytion used should be strong enough as the encrypted mail will be visible to all the public.
+

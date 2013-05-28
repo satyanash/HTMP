@@ -1,0 +1,92 @@
+
+
+This system of receiver based Email can be thought of as similar to an RSS feed.
+The sender maintains a list of all emails on the server.
+Which can then be fetched by the receiver.
+
+
+Pull based Email system can be implemented using the following system:
+
+
+______________________________________
+|
+| _____________
+| |           |
+| | ac6e5bfe  |
+| |___________|
+|
+|
+|
+|____________________________________
+
+
+Step 1 -- Mail Preparation
+The sender takes the receivers public key and encrypts the message to be sent.
+The message can be of any predefined format that the sender and receiver already know.
+
+ _____________                  _____________
+ |           |   Encryption     |           |
+ | Hello...  | -------------->  | ac6e5bfe  |
+ |___________|   Public Key     |___________|
+
+
+Step 2 -- Mail Sending
+
+The sender uses an HTTP PUT request to place the message on to the server.
+The sender may be authenticated by the HTTP server using HTTP Basic Authentication.
+The message to be sent must be placed into a specific folder that can follow the specified format:
+
+Sample URL:
+http://hostname.com/mail/mydomain.com/example.com/bob/ac6e5bfe
+
+                              _____________________________________
+      Alice                   |                                   |
+  _____________               |   ______________________________  |
+  |           |     Upload    |   |                            |  |
+  | ac6e5bfe  |  -----------> |   | /example.com/Bob/ac6e5bfe  |  |
+  |___________|    HTTP PUT   |   |____________________________|  |
+                              |                                   |
+                              |                                   |
+                              |   HTTP Web Server                 |
+                              |___________________________________|
+
+
+Step 3 -- Recovery
+
+The receivers mail client then makes a request to the server and checks for mails at the folder of the receiver's username.
+If there are any new messages, they are retrieved and shown locally to the user.
+
+_____________________________________
+|                                   |
+|   ______________________________  |                    _____________
+|   |                            |  |      Download      |           |
+|   | /example.com/Bob/ac6e5bfe  |  |  --------------->  | ac6e5bfe  |
+|   |____________________________|  |      HTTP GET      |___________|
+|                                   |
+|                                   |                         Bob
+|   HTTP Web Server                 |
+|___________________________________|
+
+
+Step 4 -- Mail Reading
+
+Once the message is downloaded by the receiver, it is decrypted using the client's private key.
+After the decryption process is complete, the receiver can read the message.
+
+ _______________                  _____________
+ |             |    Decryption    |           |
+ | ac6e5bfe    | -------------->  | Hello...  |
+ |_____________|   Private Key    |___________|
+
+
+
+SENDER MAIL RETENTION
+
+
+Once Alice has made sure that Bob has successfully downloaded the mail, she can execute the following HTTP request:
+
+DELETE /example.com/Bob/ac6e5bfe HTTP/1.1
+/* Other HTTP headers. */
+
+
+

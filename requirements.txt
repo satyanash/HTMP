@@ -1,0 +1,63 @@
+
+
+This is just a draft or a simple write up of what could possibly replace SMTP, in order to mitigate it's problems.
+
+MOTIVE:
+
+SMTP has become very complicated these days.
+Even thought it actually works, it requires that the administrators spend majority of their time in active administration regarding the Email system.
+
+Even thought the original emai lsystem was supposed to be very simple, it has evolved into some kind of complex beast that relatively few people actually understand.
+This situation is very similar to HTTP as the standard was modified by multiple entities in order to suit their own needs.
+
+Hence this is the main motive in order to think up a replacement for the SMTP standard.
+
+
+PROBLEMS WITH SMTP ( Brief):
+
+SMTP is completely sender oriented.
+The sender is supposed to wite the mail and then kiss it goodbye, hoping that it'll reach it's intended receiver in the expected form.
+The sender has complete control and anonymity regarding the actual parameters of the message.
+
+In the days of it's inception, SMTP was supposed to be a protcol meant to be used by only a few people.
+Every person's inbox was considered a sacred place where one should respect the person and put only those things that were expected to be there.
+
+Nowadays SMTP has evolved to be a protocol that is most abused by spammers and phishers alike.
+This is simply because of the fact that internet is no more the humble beast it was in the days of yore.
+
+These problems primarily arise because of the fact that SMTP hhas been modeled specifically after the original SnailMail model.
+SnailMail however is relatively less exploited probably because it requires more resources and authenticity.
+
+
+THINGS THAT WORK WELL:
+
+SMTP still has some advantages that will have to make it through in the other method in order to be useful for given use cases:
+	Mailing Lists
+		Sending mail to a hundred people is very easy, with the creation of aliases and the like.
+	Lesser Polling
+		Mail when stored on a mail server, requires the client to check for mail in only a single location.
+		All mail is delivered to this location and fetched by the client from this location itself.
+	Abstraction
+		Current implementations make sure that almost 99% of the complexity of Emails is hidden and abstracted away from end users.
+		This should be easily doable in the proposed replacement.
+
+SENDER MAIL RETETION:
+
+In orrder for the mail to be available to the receiver, it must be available on the HTTP server atleast until the receiver has succcessfully downloaded a copy of the message.
+This can range anywhere between a few minutes or a few months.
+The advantage is that it is the sender's burden to make sure that the mail actually reaches it's intended destination.
+
+Once the sender has made sure that the receiver has his own copy of the mail, he can simply execute an HTTP DELETE request to remove the mail from the server.
+This can also be done automatically by the sender's client or by the HTTP server itself, once a given time period has passed.
+
+THINGS TO FIX:
+
+Receiver Dependence
+	Make the protocol receiver dependent. The receiver should have the complete right to choose whether he wants to receive mail from a given sender or not.
+Burden the sender
+	Make holding the message the burden of the sender and not the receiver. 
+	This should exponentially increase the cost of spamming as the spammers are required to bear all the burden and not the poor receivers.
+Pull instead of Push
+	Make the Email system pull based, instead of Push. The receiver may only pull what he wants and ignore the rest.
+	Since what is not wanted is probably unsolicited in itself.
+

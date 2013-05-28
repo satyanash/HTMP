@@ -1,0 +1,79 @@
+
+Here is a sample dialog that specifies an example polled mail session:
+
+
+Step 1 -- Message Creation
+
+From: bob@mydomain.com
+To: alice@example.com
+Date: Fri May 24 22:19:19 IST 2013
+
+Hello Alice!
+This is Bob.
+Long time no see!
+What have you been up to?
+Reply Soon!
+
+Bob
+
+
+Above message is then encrypted using Alice's public key.
+
+fbc40f7543490e12c5eab23b8f1e4155
+a8359453eaf3dddbb45fffa612bb1f92
+6f2b4e25449f9b6651977795d97fffcd
+113b9b77eb148549122831d2df87e438
+8060f01a630ddf017215c971504f4022
+476d0b67bb24991e8ced48a03048cbc9
+65e0a17643f7ddb5a2a4da81d8965312
+2a1537dd40cab6db3ae38f7026d1af62
+635fba7bfdd285ebb3d999086d85f958
+bf2825faf2f93342c35802826ab2eb58
+c63ac38186634a879153f614be3026ce
+f9e172674afae16ee0add5aac06c38fa
+bfdf3852e551588fb71b0cc41b7cf26a
+f7e344f240c0cf08164fd631aaf6eb4a
+e754741bf664e21e021cdef24efe797d
+....
+
+
+Step 2 -- Message Sending
+
+Bob's mail client will then upload the message to the mail server.
+The file name must be a hash of the complete message.
+
+PUT /mydomain.com/example.com/alice/bad828a9683b27a959ab03b592ff04fa HTTP/1.1
+Authentication-Realm: 'My Domain & Company'
+Auth-Type: Basic
+/* Other HTTP headers. */
+
+Hence, once uploaded the message on the server will have the following path:
+
+http://mydomain.com/example.com/alice/bad828a9683b27a959ab03b592ff04fa
+
+Step 3 -- Message Retrieval
+
+Alice can then retrieve the message back from Bob's mail server.
+Alice's mail client can then get the message from the server using the following HTTP clause.
+
+
+GET /example.com/alice/bad828a9683b27a959ab03b592ff04fa HTTP/1.1
+/* Other HTTP headers. */
+
+
+Step 4 -- Message Reading
+
+Alice's mail client will automatically decrypt the message using Alice's private key.
+
+From: bob@mydomain.com
+To: alice@example.com
+Date: Fri May 24 22:19:19 IST 2013
+
+Hello Alice!
+This is Bob.
+Long time no see!
+What have you been up to?
+Reply Soon!
+
+Bob
+
