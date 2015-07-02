@@ -7,7 +7,6 @@ Which can then be fetched by the receiver.
 
 Pull based Email system can be implemented using the following system:
 
-
 ______________________________________
 |
 | _____________
@@ -43,7 +42,7 @@ http://hostname.com/mail/mydomain.com/example.com/bob/ac6e5bfe
       Alice                   |                                   |
   _____________               |   ______________________________  |
   |           |     Upload    |   |                            |  |
-  | ac6e5bfe  |  -----------> |   | /example.com/Bob/ac6e5bfe  |  |
+  | ac6e5bfe  |  -----------> |   | /example.com/bob/ac6e5bfe  |  |
   |___________|    HTTP PUT   |   |____________________________|  |
                               |                                   |
                               |                                   |
@@ -82,11 +81,9 @@ After the decryption process is complete, the receiver can read the message.
 
 SENDER MAIL RETENTION
 
-
 Once Alice has made sure that Bob has successfully downloaded the mail, she can execute the following HTTP request:
 
 DELETE /example.com/Bob/ac6e5bfe HTTP/1.1
 /* Other HTTP headers. */
-
 
 

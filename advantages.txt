@@ -8,7 +8,6 @@ Will completely eliminate spam.
 This is simply because this form is completely free from the problem of unsolicitied mail.
 Keeping the mail available until the target has actually read the mail is very inefficient for spammers.
 
-
 2
 This form of mail is completely dependent on the sender.
 The receiver has complete independence regarding whether to fetch mail from a given host or not.
@@ -19,11 +18,14 @@ If an existing subscribed email address starts sending unsoliccited mail to the 
 4
 It works on existing HTTP servers, so no new implementations really need to take place in order to implement this on the server side.
 
+5
+It will automatically reduce replication as the receiver needs to store only those mails that he explicitly wants to store.
+
 
 Disadvantages
 
 1
-Ideally, encrytion should not be a part of the protocol specification itself.
+Ideally, encryption should not be a part of the protocol specification itself.
 Transmission security should be achieved by wrapping the existing protocol with any other standardized or custom encryption methodologies.
 For example TLS or SSL.
 

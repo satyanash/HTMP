@@ -25,8 +25,17 @@ Every person's inbox was considered a sacred place where one should respect the 
 Nowadays SMTP has evolved to be a protocol that is most abused by spammers and phishers alike.
 This is simply because of the fact that internet is no more the humble beast it was in the days of yore.
 
-These problems primarily arise because of the fact that SMTP hhas been modeled specifically after the original SnailMail model.
+These problems primarily arise because of the fact that SMTP has been modeled specifically after the original SnailMail model.
 SnailMail however is relatively less exploited probably because it requires more resources and authenticity.
+
+Lots of extra effort must be introduced in order to make sure that spam does not make it's way into the inbox.
+Constant extensions and techniques to the SMTP protocol make it complicated and prone to failure.
+DKIM, SPF, rDNS, Authenticated SMTP.
+
+It has now gotten to the point that SMTP is no more 'Simple' as it once was.
+
+Multiple access methods are also required in order to read mail such as:
+IMAP, POP3 and proprietary protocols such as Exchange's ActiveSync.
 
 
 THINGS THAT WORK WELL:
@@ -43,7 +52,7 @@ SMTP still has some advantages that will have to make it through in the other me
 
 SENDER MAIL RETETION:
 
-In orrder for the mail to be available to the receiver, it must be available on the HTTP server atleast until the receiver has succcessfully downloaded a copy of the message.
+In order for the mail to be available to the receiver, it must be available on the HTTP server atleast until the receiver has succcessfully downloaded a copy of the message.
 This can range anywhere between a few minutes or a few months.
 The advantage is that it is the sender's burden to make sure that the mail actually reaches it's intended destination.
 
